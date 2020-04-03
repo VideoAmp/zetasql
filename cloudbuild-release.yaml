@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/zetasql:$TAG', '--file=Dockerfile.server', '.']
+  id: 'server'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['tag', 'gcr.io/$PROJECT_ID/zetasql:$TAG', 'gcr.io/$PROJECT_ID/zetasql:latest']
+  wait_for: ['server']
+timeout: 30m
+options:
+  machineType: 'N1_HIGHCPU_8'
+images:
+  - 'gcr.io/$PROJECT_ID/zetasql:latest'
+  - 'gcr.io/$PROJECT_ID/zetasql:$TAG'
