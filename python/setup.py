@@ -10,7 +10,7 @@ EXTRAS = {}
 print(find_namespace_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]))
 
 setup(name='zetasql',
-    version='2020.03.2',
+    version='2020.03.99',
     description='gRPC Client library for ZetaSQL',
     url='http://github.com/VideoAmp/zetasql',
     author='Gregory Bean',
