@@ -37,3 +37,8 @@ bazel-zetasql
 *.exe
 *.out
 *.app
+
+# Python build
+python
+wheels
+build

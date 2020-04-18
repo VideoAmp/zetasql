@@ -31,12 +31,16 @@ Commands
 
 There are a few new bazel build targets:
 
-	$ bazel build //zetasql/server # builds the server
-	$ bazel build //protos # collects protos file
+```console
+bazel build //zetasql/server # builds the server
+bazel build //protos # collects protos file
+```
 
 To build the docker container locally:
 
-	$ docker build -t zetasql -f Dockerfile.server .
+```console
+docker build -t zetasql -f Dockerfile.server .
+```
 
 This build is very large and will take 15-30 minutes depending on your
 hardware. The build is purposefully constrained so that bazel does not bust the
@@ -46,15 +50,17 @@ memory limits of the docker environment and cause OOM errors.
 Python GRPC Library
 -------------------
 
-Right now this is built and released by hand. First, update `python/setup.py`
-with the version matching the tag of the ZetaSQL release. Then:
+Right now this is built and released by hand. Versioning is done automatically
+and closesly follows the upstream tags, but normalized by setuptools.
 
-	$ pip install --user -r requirements.txt
-	$ ./gen_py_proto.sh
-	$ cd python
-	$ pip wheel .
+```console
 
-Then we commit, push (merge) and upload the wheel under a new tag as a Github
+pip install --user -r requirements.txt
+./gen_py_proto.sh
+pip wheel . -w wheels
+```
+
+Then upload the wheel under a the upstream tag as a Github
 release manually, and our client applications pull from that release.
 
 TODO
