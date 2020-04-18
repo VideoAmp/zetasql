@@ -1,9 +1,14 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/zetasql:$BRANCH_NAME-$SHORT_SHA', '--file=Dockerfile.server', '.']
+  args:
+    - 'build'
+    - '-t'
+    - 'gcr.io/$PROJECT_ID/zetasql:$SHORT_SHA'
+    - '--file=Dockerfile.server'
+    - '.'
   id: 'server'
 timeout: 30m
 options:
   machineType: 'N1_HIGHCPU_8'
 images:
-  - 'gcr.io/$PROJECT_ID/zetasql:$BRANCH_NAME-$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/zetasql:$SHORT_SHA'

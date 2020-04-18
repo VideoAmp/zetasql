@@ -16,6 +16,20 @@ A few things have been added
 We've tried to do this in a manner that makes pulling the upstream changes as
 painless as possible, e.g. via adding files instead of editing existing ones.
 
+
+Versioning
+----------
+
+The upstream Google repository has established a version tagging scheme that we
+try to closely follow. It is of the form `YYYY.MM.BUILD_NO` - a four digit year
+followed by the two digit month, and finally the build number for the month.
+
+Our versioning will follow the same scheme, with an extra revision number on
+the end indicating our changes.
+
+The python client library is versioned using a normalized PEP440 Vformat of
+this tag, e.g. `2020.03.01` becomes `2020.3.1`.
+
 Service
 -------
 
