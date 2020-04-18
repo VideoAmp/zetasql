@@ -1,3 +1,4 @@
-protobuf==3.11.3
-grpclib==0.3.1
-mypy-protobuf==1.19
+protobuf>=3.11.3
+grpclib>=0.3.1
+mypy-protobuf>=1.19
+dunamai=0.9.1

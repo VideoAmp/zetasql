@@ -16,6 +16,28 @@ A few things have been added
 We've tried to do this in a manner that makes pulling the upstream changes as
 painless as possible, e.g. via adding files instead of editing existing ones.
 
+
+Versioning
+----------
+
+The upstream Google repository has established a version tagging scheme that we
+try to closely follow. It is of the form `YYYY.MM.BUILD_NO` - a four digit year
+followed by the two digit month, and finally the build number for the month.
+
+Our versioning will follow the same scheme, with an extra revision number on
+the end indicating our own build number.
+
+For example, if the last upstream version was `2020.03.01` and we have made
+zero changes since merging that tag into this repository, the tag is the same.
+
+If we need to release a change between upstream releases, we will add an
+additional build number to the end, the example given would become
+`20202.03.01.01` indicating that there has been 1 update on top of the
+`2020.03.01` upstream release.
+
+The python client library is versioned using a normalized PEP440 Vformat of
+this tag, e.g. `2020.03.01.01` becomes `2020.3.1.1`.
+
 Service
 -------
 
@@ -31,12 +53,16 @@ Commands
 
 There are a few new bazel build targets:
 
-	$ bazel build //zetasql/server # builds the server
-	$ bazel build //protos # collects protos file
+```console
+bazel build //zetasql/server # builds the server
+bazel build //protos # collects protos file
+```
 
 To build the docker container locally:
 
-	$ docker build -t zetasql -f Dockerfile.server .
+```console
+docker build -t zetasql -f Dockerfile.server .
+```
 
 This build is very large and will take 15-30 minutes depending on your
 hardware. The build is purposefully constrained so that bazel does not bust the
@@ -46,15 +72,17 @@ memory limits of the docker environment and cause OOM errors.
 Python GRPC Library
 -------------------
 
-Right now this is built and released by hand. First, update `python/setup.py`
-with the version matching the tag of the ZetaSQL release. Then:
+Right now this is built and released by hand. Versioning is done automatically
+and closesly follows the upstream tags, but normalized by setuptools.
 
-	$ pip install --user -r requirements.txt
-	$ ./gen_py_proto.sh
-	$ cd python
-	$ pip wheel .
+```console
 
-Then we commit, push (merge) and upload the wheel under a new tag as a Github
+pip install --user -r requirements.txt
+./gen_py_proto.sh
+pip wheel . -w wheels
+```
+
+Then upload the wheel under a the upstream tag as a Github
 release manually, and our client applications pull from that release.
 
 TODO
