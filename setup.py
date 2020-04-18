@@ -5,13 +5,14 @@ from dunamai import Version
 
 REQUIRED = ["protobuf>=3.11.3", "grpclib>=0.3.1"]
 EXTRAS = {}
-VERSION_PATTERN = r"^(?P<base>\d+\.\d+\.\d+)(\.?((?P<revision>\d+)))?$"
+# This is pretty hacky but dunamai expects things that don't
+# apply to our versioning scheme.
+VERSION_PATTERN = r"^(?P<base>\d+\.\d+\.\d+)((?P<stage>\.?)(?P<revision>\d+))?$"
 
-version = Version.from_git(pattern=VERSION_PATTERN)
-
+version = Version.from_git(pattern=VERSION_PATTERN, latest_tag=True)
 setup(
     name="zetasql",
-    version=version.serialize(dirty=True),
+    version=version.serialize(),
     description="gRPC client library for ZetaSQL",
     url="http://github.com/VideoAmp/zetasql",
     author="Gregory Bean",
