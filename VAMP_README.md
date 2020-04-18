@@ -25,10 +25,18 @@ try to closely follow. It is of the form `YYYY.MM.BUILD_NO` - a four digit year
 followed by the two digit month, and finally the build number for the month.
 
 Our versioning will follow the same scheme, with an extra revision number on
-the end indicating our changes.
+the end indicating our own build number.
+
+For example, if the last upstream version was `2020.03.01` and we have made
+zero changes since merging that tag into this repository, the tag is the same.
+
+If we need to release a change between upstream releases, we will add an
+additional build number to the end, the example given would become
+`20202.03.01.01` indicating that there has been 1 update on top of the
+`2020.03.01` upstream release.
 
 The python client library is versioned using a normalized PEP440 Vformat of
-this tag, e.g. `2020.03.01` becomes `2020.3.1`.
+this tag, e.g. `2020.03.01.01` becomes `2020.3.1.1`.
 
 Service
 -------
