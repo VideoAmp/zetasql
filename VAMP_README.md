@@ -98,7 +98,7 @@ Python GRPC Library
 -------------------
 
 Right now this is built and released by hand. Versioning is done automatically
-and closesly follows the upstream tags, but normalized by setuptools.
+and closely follows the upstream tags, but normalized by setuptools.
 
 ```console
 pyenv install 3.7
@@ -109,7 +109,7 @@ pip install -r requirements.txt
 pip wheel . -w wheels
 ```
 
-Then upload the wheel under a the upstream tag as a Github
+Then upload the wheel under the upstream tag as a Github
 release manually, and our client applications pull from that release.
 
 TODO
