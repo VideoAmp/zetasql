@@ -111,6 +111,8 @@ proto_library(
         "//zetasql/public:type_proto",
         "//zetasql/public:value_proto",
         "//zetasql/resolved_ast:resolved_ast_proto",
+        "//zetasql/public/functions:datetime_proto",
+        "//zetasql/public/functions:normalize_mode_proto",
         "@com_google_protobuf//:descriptor_proto",
         "@com_google_protobuf//:empty_proto",
     ],

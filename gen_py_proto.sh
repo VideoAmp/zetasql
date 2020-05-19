@@ -12,7 +12,8 @@ mkdir $BUILD_DIR
     bazel-bin/protos/zetasql/proto/*.proto \
     bazel-bin/protos/zetasql/public/*.proto \
     bazel-bin/protos/zetasql/public/proto/*.proto \
-    bazel-bin/protos/zetasql/resolved_ast/*.proto
+    bazel-bin/protos/zetasql/resolved_ast/*.proto \
+    bazel-bin/protos/zetasql/public/functions/*.proto
 
 ./bazel-out/host/bin/external/com_google_protobuf/protoc \
 	--python_grpc_out=$BUILD_DIR \
