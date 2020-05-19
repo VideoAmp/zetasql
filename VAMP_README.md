@@ -47,6 +47,31 @@ C++ code provided by Google.
 By default, it listens on port `127.0.0.1:5000`, and there is a command flag
 to change this `--listen-address` that also supports unix sockets.
 
+Dependencies
+--------
+
+To build locally on macOS you will need the following packages installed.
+
+```console
+brew install autoconf
+brew install automake
+brew install c-ares
+brew install clang-format
+brew install cmake
+brew install gnu-sed
+brew install icu4c
+brew install libtool
+# Install Bazel
+brew tap bazelbuild/tap
+brew install bazelbuild/tap/bazel
+# Install Openjdk8 from cask
+brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+# Makes running bazel easier
+brew install bazelisk
+brew install ruby
+```
+
+In addition make sure you have Xcode installed.
 
 Commands
 --------
@@ -54,8 +79,8 @@ Commands
 There are a few new bazel build targets:
 
 ```console
-bazel build //zetasql/server # builds the server
-bazel build //protos # collects protos file
+bazelisk build //zetasql/server # builds the server
+bazelisk build //protos:local_service # builds protos for local_service and outputs to bazel-bin
 ```
 
 To build the docker container locally:
@@ -73,16 +98,18 @@ Python GRPC Library
 -------------------
 
 Right now this is built and released by hand. Versioning is done automatically
-and closesly follows the upstream tags, but normalized by setuptools.
+and closely follows the upstream tags, but normalized by setuptools.
 
 ```console
-
-pip install --user -r requirements.txt
+pyenv install 3.7
+pyenv virtualenv 3.7
+pyenv activate 3.7
+pip install -r requirements.txt
 ./gen_py_proto.sh
 pip wheel . -w wheels
 ```
 
-Then upload the wheel under a the upstream tag as a Github
+Then upload the wheel under the upstream tag as a Github
 release manually, and our client applications pull from that release.
 
 TODO

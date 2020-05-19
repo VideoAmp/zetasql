@@ -42,3 +42,7 @@ bazel-zetasql
 python
 wheels
 build
+
+# Vscode
+.devcontainer
+.vscode

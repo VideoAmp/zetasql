@@ -1,5 +1,6 @@
 FROM ubuntu:latest AS base
 RUN apt-get -y update
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y install wget pkg-config zip g++ zlib1g-dev unzip python3 git make bash-completion python apt-utils
 RUN apt-get -y install  openjdk-8-jdk-headless
 RUN apt-get -y install python3-distutils
