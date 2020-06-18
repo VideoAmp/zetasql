@@ -1,4 +1,4 @@
-FROM debian:buster-slim as base
+FROM gcr.io/google-appengine/debian10@sha256:d2e40ef81a0f353f1b9c3cf07e384a1f23db3acdaa0eae4c269b653ab45ffadf as base
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 RUN apt-get -y update
@@ -31,7 +31,7 @@ WORKDIR /workspace
 RUN bazel build --jobs=5 --local_ram_resources=HOST_RAM*.5 --local_cpu_resources=HOST_CPUS*1 //zetasql/server --verbose_failures
 
 
-FROM debian:buster-slim
+FROM gcr.io/google-appengine/debian10@sha256:d2e40ef81a0f353f1b9c3cf07e384a1f23db3acdaa0eae4c269b653ab45ffadf
 RUN mkdir -p /opt/zetasql
 RUN groupadd -g 999 zetasql && \
     useradd -r -u 999 -g zetasql zetasql
